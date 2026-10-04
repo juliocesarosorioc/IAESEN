@@ -39,7 +39,7 @@
         .table-container::-webkit-scrollbar-thumb { background: #2c3e50; border-radius: 5px; }
         .table-container::-webkit-scrollbar-thumb:hover { background: #1a252f; }
 
-        /* ENCABEZADO CON FONDO CLARO AZUL INSTITUCIONAL Y LOGOS TRANSPARENTES */
+        /* ENCABEZADO CON FONDO CLARO AZUL INSTITUCIONAL Y LOGOS TRIPLE (UMBV, JULIO OSORIO, IAESEN) */
         .presentation-header {
             background-color: #eaf2f8; 
             color: #1b4f72; 
@@ -53,24 +53,15 @@
             z-index: 10;
         }
         
-        .header-logo-left, .header-logo-right {
+        .header-logo-left, .header-logo-center-left, .header-logo-right {
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Logo Izquierdo (UMBV) sin fondo (transparente) */
-        .header-logo-left img {
-            height: 15vh; 
-            width: auto;
-            object-fit: contain;
-            mix-blend-mode: multiply; 
-            filter: contrast(105%);
-        }
-
-        /* Logo Derecho (IAESEN) sin fondo (transparente) */
-        .header-logo-right img {
-            height: 15vh; 
+        /* Logos transparentes e igualados */
+        .header-logo-left img, .header-logo-center-left img, .header-logo-right img {
+            height: 14vh; 
             width: auto;
             object-fit: contain;
             mix-blend-mode: multiply; 
@@ -127,21 +118,30 @@
         
         .concept-icon { font-size: 2.8vh; display: block; text-align: center; margin-bottom: 0.5vh; }
         
-        /* Estilo para las portadas con enlace de descarga */
-        .book-link {
-            display: block;
-            text-align: center;
-        }
         .book-cover {
             height: 15.3vh; 
             width: auto;
             border: 1px solid #bdc3c7; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             display: block; margin: auto; border-radius: 2px;
-            transition: transform 0.2s;
         }
-        .book-cover:hover {
-            transform: scale(1.05);
-            border-color: #2980b9;
+
+        /* Estilos Interactivos para los enlaces de descarga en los títulos de las obras */
+        .download-link {
+            color: #1b4f72;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s, text-decoration 0.2s;
+        }
+        .download-link:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+        .download-hint {
+            font-size: 1.1vh;
+            color: #2980b9;
+            display: block;
+            margin-top: 2px;
+            font-style: italic;
         }
 
         .thinker-name { font-weight: bold; color: #2980b9; font-size: 1.8vh; display: block; }
@@ -180,8 +180,8 @@
                 justify-content: space-between;
             }
             
-            .header-logo-left img, .header-logo-right img { 
-                height: 70px; 
+            .header-logo-left img, .header-logo-center-left img, .header-logo-right img { 
+                height: 65px; 
                 mix-blend-mode: multiply;
             }
             
@@ -200,7 +200,8 @@
             
             .profile-img { width: 46px; height: 46px; border-width: 1px; }
             .concept-icon { font-size: 16pt; margin-bottom: 1px; }
-            .book-cover { height: 85px; } 
+            .book-cover { height: 75px; } 
+            .download-hint { display: none; } /* Oculta el texto auxiliar en papel */
             
             .thinker-name { font-size: 10.5pt; }
             .thinker-dates { font-size: 9pt; }
@@ -213,11 +214,16 @@
 <body>
 
 <div class="table-container">
-    <!-- Encabezado Institucional con Logos Transparentes, Fondo Azul Claro y Autoría -->
+    <!-- Encabezado Institucional con Logo UMBV, Logo Personal Julio Osorio, Logo IAESEN y Autoría -->
     <div class="presentation-header">
         <!-- Logo Izquierdo (UMBV) -->
         <div class="header-logo-left">
             <img src="https://www.pngfind.com/pngs/m/346-3464722_bolivarian-military-university-of-venezuela-universidad-militar-bolivariana.png" alt="Logo UMBV">
+        </div>
+
+        <!-- Logo Personal (Logo Julio Osorio en la misma carpeta) -->
+        <div class="header-logo-center-left">
+            <img src="logo-julio-osorio.png" onerror="this.style.display='none'" alt="Logo Dr. Julio Osorio">
         </div>
         
         <!-- Textos Centrales -->
@@ -265,14 +271,18 @@
                 <td><strong>Seguridad Absoluta (Supervivencia):</strong> Es el fin supremo del Estado. Los individuos ceden todos sus derechos para garantizar la protección física y evitar la destrucción mutua. El orden prevalece sobre la libertad.</td>
                 <td>
                     <ul class="works-list">
-                        <li><strong>Leviatán</strong> (1651)</li>
-                        <li><em>De Cive</em> (1642)</li>
+                        <li>
+                            <a href="https://archive.org/details/hobbes-t.-de-cive-ocr-1642-2000" target="_blank" class="download-link" title="Descargar De Cive">De Cive (1642)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1f9V__FgzuPkQa0z9xT5lGNzsXfqJhISw/view" target="_blank" class="download-link" title="Descargar Leviatán"><strong>Leviatán</strong> (1651)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <a href="https://covers.openlibrary.org/b/isbn/9780140431957-L.jpg" class="book-link" download="Leviatan_Thomas_Hobbes.jpg" title="Haz clic para descargar la obra">
-                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
-                    </a>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
                 </td>
             </tr>
             
@@ -293,14 +303,18 @@
                 <td><strong>Seguridad Jurídica y Defensa:</strong> La seguridad consiste en proteger los derechos naturales inalienables mediante leyes y un sistema judicial imparcial. El Estado brinda defensa externa, pero su poder coercitivo interno es limitado.</td>
                 <td>
                     <ul class="works-list">
-                        <li><strong>Segundo tratado sobre el gobierno civil</strong> (1689)</li>
-                        <li><em>Ensayo sobre el entendimiento humano</em> (1690)</li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1f9V__FgzuPkQa0z9xT5lGNzsXfqJhISw/view" target="_blank" class="download-link" title="Descargar Segundo Tratado"><strong>Segundo tratado</strong> (1689)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
+                        <li>
+                            <a href="https://archive.org/details/locke-john.-ensayo-sobre-el-entendimiento-humano-epl-fs-1690-2022" target="_blank" class="download-link" title="Descargar Ensayo sobre el entendimiento humano"><em>Ensayo...</em> (1690)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <a href="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" class="book-link" download="Segundo_Tratado_John_Locke.jpg" title="Haz clic para descargar la obra">
-                        <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
-                    </a>
+                    <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
                 </td>
             </tr>
 
@@ -321,14 +335,15 @@
                 <td><strong>Seguridad Social y Equidad:</strong> Verdaderamente se alcanza garantizando la igualdad moral y política. La seguridad es la protección colectiva bajo la <em>voluntad general</em>, salvaguardando al individuo de la explotación y la desigualdad.</td>
                 <td>
                     <ul class="works-list">
-                        <li><strong>El contrato social</strong> (1762)</li>
+                        <li>
+                            <a href="https://archive.org/details/contrato-social" target="_blank" class="download-link" title="Descargar El Contrato Social"><strong>El contrato social</strong> (1762)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
                         <li><em>Emilio, o De la educación</em> (1762)</li>
                     </ul>
                 </td>
                 <td>
-                    <a href="https://covers.openlibrary.org/b/isbn/9780140442014-L.jpg" class="book-link" download="El_Contrato_Social_Rousseau.jpg" title="Haz clic para descargar la obra">
-                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
-                    </a>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
                 </td>
             </tr>
 
@@ -350,13 +365,14 @@
                 <td>
                     <ul class="works-list">
                         <li><strong>Elementos de la filosofía del derecho</strong> (1820)</li>
-                        <li><em>Fenomenología del espíritu</em> (1807)</li>
+                        <li>
+                            <a href="https://archive.org/details/hegel-fenomenologia-del-espiriti" target="_blank" class="download-link" title="Descargar Fenomenología del Espíritu"><em>Fenomenología del espíritu</em> (1807)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <a href="https://upload.wikimedia.org/wikipedia/commons/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" class="book-link" download="Filosofia_del_Derecho_Hegel.jpg" title="Haz clic para descargar la obra">
-                        <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
-                    </a>
+                    <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
                 </td>
             </tr>
 
@@ -377,14 +393,18 @@
                 <td><strong>Seguridad de Clase (Enfoque Crítico):</strong> Bajo el capitalismo, los aparatos de seguridad (ejército, policía) son herramientas de coerción para proteger la propiedad burguesa. La seguridad humana real exige la abolición de las clases y del propio Estado opresor.</td>
                 <td>
                     <ul class="works-list">
-                        <li><strong>Manifiesto comunista</strong> (1848)</li>
-                        <li><em>El capital</em> (1867)</li>
+                        <li>
+                            <a href="https://dn720005.ca.archive.org/0/items/manifiesto-comunista_202302/manifiesto-comunista.pdf" target="_blank" class="download-link" title="Descargar Manifiesto Comunista"><strong>Manifiesto comunista</strong> (1848)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
+                        <li>
+                            <a href="https://archive.org/details/marx-el-capital-obra-completa" target="_blank" class="download-link" title="Descargar El Capital"><em>El capital</em> (1867)</a>
+                            <span class="download-hint">📥 Clic para descargar</span>
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <a href="https://covers.openlibrary.org/b/isbn/9780140447200-L.jpg" class="book-link" download="Manifiesto_Comunista_Marx.jpg" title="Haz clic para descargar la obra">
-                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
-                    </a>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
                 </td>
             </tr>
         </tbody>
