@@ -64,7 +64,7 @@
             height: 15vh; 
             width: auto;
             object-fit: contain;
-            mix-blend-mode: multiply; /* Elimina el fondo blanco de la imagen */
+            mix-blend-mode: multiply; 
             filter: contrast(105%);
         }
 
@@ -73,7 +73,7 @@
             height: 15vh; 
             width: auto;
             object-fit: contain;
-            mix-blend-mode: multiply; /* Elimina el fondo blanco de la imagen */
+            mix-blend-mode: multiply; 
             filter: contrast(105%);
         }
 
@@ -127,11 +127,21 @@
         
         .concept-icon { font-size: 2.8vh; display: block; text-align: center; margin-bottom: 0.5vh; }
         
+        /* Estilo para las portadas con enlace de descarga */
+        .book-link {
+            display: block;
+            text-align: center;
+        }
         .book-cover {
             height: 15.3vh; 
             width: auto;
             border: 1px solid #bdc3c7; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             display: block; margin: auto; border-radius: 2px;
+            transition: transform 0.2s;
+        }
+        .book-cover:hover {
+            transform: scale(1.05);
+            border-color: #2980b9;
         }
 
         .thinker-name { font-weight: bold; color: #2980b9; font-size: 1.8vh; display: block; }
@@ -260,7 +270,9 @@
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
+                    <a href="https://covers.openlibrary.org/b/isbn/9780140431957-L.jpg" class="book-link" download="Leviatan_Thomas_Hobbes.jpg" title="Haz clic para descargar la obra">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
+                    </a>
                 </td>
             </tr>
             
@@ -274,7 +286,7 @@
                 <td><strong>Iusnaturalismo</strong> / Liberalismo Clásico.</td>
                 <td>Seres racionales, libres e iguales, dotados de derechos naturales inviolables (vida, libertad, propiedad).</td>
                 <td>
-                    <span class="concept-icon">⚖️️</span>
+                    <span class="concept-icon">⚖</span>
                     Nace de un contrato voluntario para proteger derechos naturales ante la falta de un juez imparcial.
                 </td>
                 <td>Proteger la propiedad y las libertades. Su poder es limitado y revocable si incumple el pacto.</td>
@@ -286,7 +298,9 @@
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
+                    <a href="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" class="book-link" download="Segundo_Tratado_John_Locke.jpg" title="Haz clic para descargar la obra">
+                        <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
+                    </a>
                 </td>
             </tr>
 
@@ -312,7 +326,9 @@
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
+                    <a href="https://covers.openlibrary.org/b/isbn/9780140442014-L.jpg" class="book-link" download="El_Contrato_Social_Rousseau.jpg" title="Haz clic para descargar la obra">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
+                    </a>
                 </td>
             </tr>
 
@@ -338,7 +354,9 @@
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
+                    <a href="https://upload.wikimedia.org/wikipedia/commons/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" class="book-link" download="Filosofia_del_Derecho_Hegel.jpg" title="Haz clic para descargar la obra">
+                        <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
+                    </a>
                 </td>
             </tr>
 
@@ -352,7 +370,7 @@
                 <td>Materialismo Histórico / Dialéctica Materialista.</td>
                 <td>La materia es la única realidad. Las acciones están determinadas por circunstancias legadas por el pasado.</td>
                 <td>
-                    <span class="concept-icon">⚙️️</span>
+                    <span class="concept-icon">⚙</span>
                     El Estado nace como una superestructura de la lucha de clases, no es neutral.
                 </td>
                 <td>En el capitalismo garantiza los intereses burgueses; su fin es desaparecer mediante la revolución.</td>
@@ -364,7 +382,9 @@
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
+                    <a href="https://covers.openlibrary.org/b/isbn/9780140447200-L.jpg" class="book-link" download="Manifiesto_Comunista_Marx.jpg" title="Haz clic para descargar la obra">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
+                    </a>
                 </td>
             </tr>
         </tbody>
