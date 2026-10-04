@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentación: Pensadores del Estado y la Seguridad de la Nación</title>
+    <style>
+        /* =======================================================
+           ESTILOS PARA PANTALLA (UX Excellence & Scroll) 
+           ======================================================= */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #d5d9dc;
+            margin: 0;
+            padding: 2vh 2vw; 
+            height: 100vh; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden; 
+        }
+        
+        .table-container {
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 1600px;
+            max-height: 96vh; 
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; 
+            border: 1px solid #bdc3c7;
+        }
+
+        .table-container::-webkit-scrollbar { width: 10px; }
+        .table-container::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 0 8px 8px 0; }
+        .table-container::-webkit-scrollbar-thumb { background: #2c3e50; border-radius: 5px; }
+        .table-container::-webkit-scrollbar-thumb:hover { background: #1a252f; }
+
+        /* ENCABEZADO CON FONDO CLARO AZUL INSTITUCIONAL Y LOGOS TRANSPARENTES */
+        .presentation-header {
+            background-color: #eaf2f8; 
+            color: #1b4f72; 
+            padding: 1.5vh 2vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #2980b9; 
+            position: sticky; 
+            top: 0;
+            z-index: 10;
+        }
+        
+        .header-logo-left, .header-logo-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Logo Izquierdo (UMBV) sin fondo (transparente) */
+        .header-logo-left img {
+            height: 15vh; 
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Elimina el fondo blanco de la imagen */
+            filter: contrast(105%);
+        }
+
+        /* Logo Derecho (IAESEN) sin fondo (transparente) */
+        .header-logo-right img {
+            height: 15vh; 
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Elimina el fondo blanco de la imagen */
+            filter: contrast(105%);
+        }
+
+        .header-text-center {
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 1vw;
+        }
+        
+        .inst-title { font-size: 2.1vh; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3vh; color: #154360; }
+        .inst-subtitle { font-size: 1.8vh; color: #2471a3; margin-bottom: 0.8vh; font-weight: 600; }
+        .author-info { font-size: 1.9vh; font-weight: 700; color: #78281f; }
+
+        h2 {
+            text-align: center;
+            background-color: #2c3e50;
+            color: #fff;
+            margin: 0;
+            padding: 1.2vh;
+            font-size: 2.3vh;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 16.5vh; 
+            z-index: 10;
+        }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td {
+            padding: 1vh 0.8vw;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #34495e; color: #ecf0f1; font-weight: 600; text-transform: uppercase;
+            font-size: 1.5vh; text-align: center; position: sticky; top: 20.5vh; z-index: 9;
+        }
+        td { font-size: 1.65vh; line-height: 1.3; }
+        
+        tr:nth-child(even) { background-color: #f9fbfd; }
+        tr:hover { background-color: #f1f5f9; }
+        
+        .profile-container { text-align: center; }
+        .profile-img {
+            width: 8.5vh; height: 8.5vh; 
+            border-radius: 50%; object-fit: cover; object-position: top;
+            border: 2px solid #bdc3c7; margin-bottom: 0.5vh;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .concept-icon { font-size: 2.8vh; display: block; text-align: center; margin-bottom: 0.5vh; }
+        
+        .book-cover {
+            height: 15.3vh; 
+            width: auto;
+            border: 1px solid #bdc3c7; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block; margin: auto; border-radius: 2px;
+        }
+
+        .thinker-name { font-weight: bold; color: #2980b9; font-size: 1.8vh; display: block; }
+        .thinker-dates { font-size: 1.4vh; color: #7f8c8d; display: block; }
+        ul.works-list { margin: 0; padding-left: 1.5vw; }
+        ul.works-list li { margin-bottom: 0.4vh; }
+
+        /* =======================================================
+           ESTILOS ESTRICTOS PARA IMPRESIÓN 
+           ======================================================= */
+        @media print {
+            @page { size: letter landscape; margin: 5mm; }
+            html, body { 
+                width: 100%; height: 100% !important; 
+                padding: 0; margin: 0; 
+                background-color: #fff; display: block; 
+                overflow: hidden !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            .table-container { 
+                width: 100%; height: 100% !important; 
+                border: 2px solid #2c3e50; border-radius: 0; box-shadow: none; 
+                overflow: hidden !important;
+                display: flex; flex-direction: column;
+            }
+            
+            .presentation-header, h2, th { position: static !important; }
+            .presentation-header { 
+                padding: 4px 10px; 
+                background-color: #eaf2f8 !important;
+                border-bottom: 3px solid #2980b9; 
+                flex-shrink: 0; 
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .header-logo-left img, .header-logo-right img { 
+                height: 70px; 
+                mix-blend-mode: multiply;
+            }
+            
+            .inst-title { font-size: 11pt; margin-bottom: 2px; color: #154360; }
+            .inst-subtitle { font-size: 9.5pt; margin-bottom: 2px; color: #2471a3; }
+            .author-info { font-size: 10pt; color: #78281f; }
+            h2 { font-size: 10.5pt; padding: 4px; margin: 0; flex-shrink: 0; }
+            
+            table { flex-grow: 1; height: 100%; }
+            th, td { 
+                font-size: 9.5pt; 
+                padding: 3px 4px; 
+                line-height: 1.1; 
+            }
+            th { font-size: 9pt; }
+            
+            .profile-img { width: 46px; height: 46px; border-width: 1px; }
+            .concept-icon { font-size: 16pt; margin-bottom: 1px; }
+            .book-cover { height: 85px; } 
+            
+            .thinker-name { font-size: 10.5pt; }
+            .thinker-dates { font-size: 9pt; }
+            ul.works-list { padding-left: 10px; margin: 0; }
+            ul.works-list li { margin-bottom: 2px; }
+            tr { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-container">
+    <!-- Encabezado Institucional con Logos Transparentes, Fondo Azul Claro y Autoría -->
+    <div class="presentation-header">
+        <!-- Logo Izquierdo (UMBV) -->
+        <div class="header-logo-left">
+            <img src="https://www.pngfind.com/pngs/m/346-3464722_bolivarian-military-university-of-venezuela-universidad-militar-bolivariana.png" alt="Logo UMBV">
+        </div>
+        
+        <!-- Textos Centrales -->
+        <div class="header-text-center">
+            <div class="inst-title">Instituto de Altos Estudios de Seguridad de la Nación<br>Gran Mariscal de Ayacucho "Antonio José de Sucre"</div>
+            <div class="inst-subtitle">Maestría en Seguridad de la Nación</div>
+            <div class="author-info">Autor: Dr. Julio César Osorio Cabrera | C.I.: V-15.759.985</div>
+        </div>
+        
+        <!-- Logo Derecho (IAESEN) -->
+        <div class="header-logo-right">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.SkyT950LllXU98bkeixzFAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo IAESEN">
+        </div>
+    </div>
+
+    <h2>Cuadro Comparativo: Visiones del Estado y Seguridad de la Nación</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 9%;">Pensador</th>
+                <th style="width: 12%;">Corriente / Enfoque</th>
+                <th style="width: 14%;">Visión del Ser Humano<br>(Estado de Naturaleza)</th>
+                <th style="width: 14%; text-align: center;">Origen y Naturaleza del Estado</th>
+                <th style="width: 13%;">Función Principal del Estado</th>
+                <th style="width: 15%;">Enfoque de Seguridad</th>
+                <th style="width: 13%;">Obras más importantes</th>
+                <th style="width: 10%; text-align: center;">Obra Trascendental</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thomas Hobbes -->
+            <tr>
+                <td class="profile-container">
+                    <img class="profile-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Thomas_Hobbes_%28portrait%29.jpg" referrerpolicy="no-referrer" alt="Thomas Hobbes">
+                    <span class="thinker-name">Thomas Hobbes</span>
+                    <span class="thinker-dates">(1588 - 1679)</span>
+                </td>
+                <td><strong>Iusnaturalismo</strong> (método) / <strong>Positivismo</strong> (conclusión) y Realismo Político.</td>
+                <td>El ser humano se mueve por pasiones e interés de poder. El estado de naturaleza es una guerra de todos contra todos.</td>
+                <td>
+                    <span class="concept-icon">👑</span>
+                    Nace del miedo a la muerte. Es un ente absoluto (Leviatán) que concentra el poder para evitar el caos.
+                </td>
+                <td>Mantener la paz y la seguridad, imponiendo el derecho positivo a cambio de sumisión total.</td>
+                <td><strong>Seguridad Absoluta (Supervivencia):</strong> Es el fin supremo del Estado. Los individuos ceden todos sus derechos para garantizar la protección física y evitar la destrucción mutua. El orden prevalece sobre la libertad.</td>
+                <td>
+                    <ul class="works-list">
+                        <li><strong>Leviatán</strong> (1651)</li>
+                        <li><em>De Cive</em> (1642)</li>
+                    </ul>
+                </td>
+                <td>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
+                </td>
+            </tr>
+            
+            <!-- John Locke -->
+            <tr>
+                <td class="profile-container">
+                    <img class="profile-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/John_Locke.jpg" referrerpolicy="no-referrer" alt="John Locke">
+                    <span class="thinker-name">John Locke</span>
+                    <span class="thinker-dates">(1632 - 1704)</span>
+                </td>
+                <td><strong>Iusnaturalismo</strong> / Liberalismo Clásico.</td>
+                <td>Seres racionales, libres e iguales, dotados de derechos naturales inviolables (vida, libertad, propiedad).</td>
+                <td>
+                    <span class="concept-icon">⚖️️</span>
+                    Nace de un contrato voluntario para proteger derechos naturales ante la falta de un juez imparcial.
+                </td>
+                <td>Proteger la propiedad y las libertades. Su poder es limitado y revocable si incumple el pacto.</td>
+                <td><strong>Seguridad Jurídica y Defensa:</strong> La seguridad consiste en proteger los derechos naturales inalienables mediante leyes y un sistema judicial imparcial. El Estado brinda defensa externa, pero su poder coercitivo interno es limitado.</td>
+                <td>
+                    <ul class="works-list">
+                        <li><strong>Segundo tratado sobre el gobierno civil</strong> (1689)</li>
+                        <li><em>Ensayo sobre el entendimiento humano</em> (1690)</li>
+                    </ul>
+                </td>
+                <td>
+                    <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
+                </td>
+            </tr>
+
+            <!-- Jean-Jacques Rousseau -->
+            <tr>
+                <td class="profile-container">
+                    <img class="profile-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Jean-Jacques_Rousseau_%28painted_portrait%29.jpg" referrerpolicy="no-referrer" alt="Jean-Jacques Rousseau">
+                    <span class="thinker-name">Jean-Jacques Rousseau</span>
+                    <span class="thinker-dates">(1712 - 1778)</span>
+                </td>
+                <td><strong>Iusnaturalismo</strong> / Contractualismo Republicano.</td>
+                <td>Es un «salvaje noble» que ha perdido sus virtudes originales debido a la sociedad corruptora.</td>
+                <td>
+                    <span class="concept-icon">🤝</span>
+                    Nace de un nuevo pacto donde el individuo se somete voluntariamente a la "voluntad general".
+                </td>
+                <td>Garantizar la igualdad y el bien común, sirviendo como máxima expresión de la soberanía popular.</td>
+                <td><strong>Seguridad Social y Equidad:</strong> Verdaderamente se alcanza garantizando la igualdad moral y política. La seguridad es la protección colectiva bajo la <em>voluntad general</em>, salvaguardando al individuo de la explotación y la desigualdad.</td>
+                <td>
+                    <ul class="works-list">
+                        <li><strong>El contrato social</strong> (1762)</li>
+                        <li><em>Emilio, o De la educación</em> (1762)</li>
+                    </ul>
+                </td>
+                <td>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
+                </td>
+            </tr>
+
+            <!-- Georg W. F. Hegel -->
+            <tr>
+                <td class="profile-container">
+                    <img class="profile-img" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Hegel_portrait_by_Schlesinger_1831.jpg" referrerpolicy="no-referrer" alt="Georg W. F. Hegel">
+                    <span class="thinker-name">Georg W. F. Hegel</span>
+                    <span class="thinker-dates">(1770 - 1831)</span>
+                </td>
+                <td>Idealismo Filosófico / Dialéctica Histórica.</td>
+                <td>Inmerso en un desarrollo histórico dialéctico. Avanza superando oposiciones hasta alcanzar una síntesis.</td>
+                <td>
+                    <span class="concept-icon">💡</span>
+                    No nace de un contrato; es la objetivación del pensamiento, siendo éste la verdadera realidad.
+                </td>
+                <td>Materializar el sistema jurídico como "reino de la libertad operante" de manera ética.</td>
+                <td><strong>Seguridad Ética e Institucional:</strong> El Estado garantiza la seguridad de la Nación como entidad soberana. La verdadera seguridad del individuo radica en su integración al orden ético (instituciones) que el Estado representa y defiende históricamente.</td>
+                <td>
+                    <ul class="works-list">
+                        <li><strong>Elementos de la filosofía del derecho</strong> (1820)</li>
+                        <li><em>Fenomenología del espíritu</em> (1807)</li>
+                    </ul>
+                </td>
+                <td>
+                    <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
+                </td>
+            </tr>
+
+            <!-- Karl Marx -->
+            <tr>
+                <td class="profile-container">
+                    <img class="profile-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg" referrerpolicy="no-referrer" alt="Karl Marx">
+                    <span class="thinker-name">Karl Marx</span>
+                    <span class="thinker-dates">(1818 - 1883)</span>
+                </td>
+                <td>Materialismo Histórico / Dialéctica Materialista.</td>
+                <td>La materia es la única realidad. Las acciones están determinadas por circunstancias legadas por el pasado.</td>
+                <td>
+                    <span class="concept-icon">⚙️️</span>
+                    El Estado nace como una superestructura de la lucha de clases, no es neutral.
+                </td>
+                <td>En el capitalismo garantiza los intereses burgueses; su fin es desaparecer mediante la revolución.</td>
+                <td><strong>Seguridad de Clase (Enfoque Crítico):</strong> Bajo el capitalismo, los aparatos de seguridad (ejército, policía) son herramientas de coerción para proteger la propiedad burguesa. La seguridad humana real exige la abolición de las clases y del propio Estado opresor.</td>
+                <td>
+                    <ul class="works-list">
+                        <li><strong>Manifiesto comunista</strong> (1848)</li>
+                        <li><em>El capital</em> (1867)</li>
+                    </ul>
+                </td>
+                <td>
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
