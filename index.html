@@ -118,30 +118,50 @@
         
         .concept-icon { font-size: 2.8vh; display: block; text-align: center; margin-bottom: 0.5vh; }
         
+        /* Portada de libro miniatura con cursor interactivo */
         .book-cover {
             height: 15.3vh; 
             width: auto;
             border: 1px solid #bdc3c7; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             display: block; margin: auto; border-radius: 2px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .book-cover:hover {
+            transform: scale(1.05);
+            border-color: #2980b9;
         }
 
-        /* Estilos Interactivos para los enlaces de descarga en los títulos de las obras */
+        /* Lightbox para ver la imagen en grande */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #lightbox img {
+            max-height: 85vh;
+            max-width: 85vw;
+            border: 4px solid #fff;
+            border-radius: 6px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        }
+
+        /* Enlaces limpios de descarga directa en los títulos */
         .download-link {
             color: #1b4f72;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.2s, text-decoration 0.2s;
+            transition: color 0.2s, border-bottom 0.2s;
         }
         .download-link:hover {
             color: #c0392b;
-            text-decoration: underline;
-        }
-        .download-hint {
-            font-size: 1.1vh;
-            color: #2980b9;
-            display: block;
-            margin-top: 2px;
-            font-style: italic;
+            border-bottom: 1px solid #c0392b;
         }
 
         .thinker-name { font-weight: bold; color: #2980b9; font-size: 1.8vh; display: block; }
@@ -200,8 +220,7 @@
             
             .profile-img { width: 46px; height: 46px; border-width: 1px; }
             .concept-icon { font-size: 16pt; margin-bottom: 1px; }
-            .book-cover { height: 75px; } 
-            .download-hint { display: none; } /* Oculta el texto auxiliar en papel */
+            .book-cover { height: 75px; cursor: default; } 
             
             .thinker-name { font-size: 10.5pt; }
             .thinker-dates { font-size: 9pt; }
@@ -212,6 +231,11 @@
     </style>
 </head>
 <body>
+
+<!-- Contenedor Lightbox para ver la imagen en grande -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Vista ampliada de la obra">
+</div>
 
 <div class="table-container">
     <!-- Encabezado Institucional con Logo UMBV, Logo Personal Julio Osorio, Logo IAESEN y Autoría -->
@@ -273,16 +297,14 @@
                     <ul class="works-list">
                         <li>
                             <a href="https://archive.org/details/hobbes-t.-de-cive-ocr-1642-2000" target="_blank" class="download-link" title="Descargar De Cive">De Cive (1642)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                         <li>
                             <a href="https://drive.google.com/file/d/1f9V__FgzuPkQa0z9xT5lGNzsXfqJhISw/view" target="_blank" class="download-link" title="Descargar Leviatán"><strong>Leviatán</strong> (1651)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140431957-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Leviatán';" alt="Portada de Leviatán" onclick="openLightbox(this.src)">
                 </td>
             </tr>
             
@@ -305,16 +327,14 @@
                     <ul class="works-list">
                         <li>
                             <a href="https://drive.google.com/file/d/1f9V__FgzuPkQa0z9xT5lGNzsXfqJhISw/view" target="_blank" class="download-link" title="Descargar Segundo Tratado"><strong>Segundo tratado</strong> (1689)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                         <li>
                             <a href="https://archive.org/details/locke-john.-ensayo-sobre-el-entendimiento-humano-epl-fs-1690-2022" target="_blank" class="download-link" title="Descargar Ensayo sobre el entendimiento humano"><em>Ensayo...</em> (1690)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado">
+                    <img class="book-cover" src="https://images-na.ssl-images-amazon.com/images/I/51znwFQKXvL.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Segundo+Tratado';" alt="Portada del Segundo tratado" onclick="openLightbox(this.src)">
                 </td>
             </tr>
 
@@ -337,13 +357,14 @@
                     <ul class="works-list">
                         <li>
                             <a href="https://archive.org/details/contrato-social" target="_blank" class="download-link" title="Descargar El Contrato Social"><strong>El contrato social</strong> (1762)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
-                        <li><em>Emilio, o De la educación</em> (1762)</li>
+                        <li>
+                            <a href="https://archive.org/details/emilio-o-de-la-educacion-jean-jacques-rousseau_202406" target="_blank" class="download-link" title="Descargar Emilio o De la educación"><em>Emilio, o De la educación</em> (1762)</a>
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140442014-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=El+Contrato';" alt="Portada de El contrato social" onclick="openLightbox(this.src)">
                 </td>
             </tr>
 
@@ -364,15 +385,16 @@
                 <td><strong>Seguridad Ética e Institucional:</strong> El Estado garantiza la seguridad de la Nación como entidad soberana. La verdadera seguridad del individuo radica en su integración al orden ético (instituciones) que el Estado representa y defiende históricamente.</td>
                 <td>
                     <ul class="works-list">
-                        <li><strong>Elementos de la filosofía del derecho</strong> (1820)</li>
+                        <li>
+                            <a href="https://archive.org/details/hegelfilosofiadelderecho" target="_blank" class="download-link" title="Descargar Filosofía del Derecho"><strong>Elementos de la filosofía del derecho</strong> (1820)</a>
+                        </li>
                         <li>
                             <a href="https://archive.org/details/hegel-fenomenologia-del-espiriti" target="_blank" class="download-link" title="Descargar Fenomenología del Espíritu"><em>Fenomenología del espíritu</em> (1807)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho">
+                    <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg/200px-Hegel_Grundlinien_der_Philosophie_des_Rechts_1821_title.jpg" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Filosofía+Derecho';" alt="Portada de Filosofía del derecho" onclick="openLightbox(this.src)">
                 </td>
             </tr>
 
@@ -395,21 +417,32 @@
                     <ul class="works-list">
                         <li>
                             <a href="https://dn720005.ca.archive.org/0/items/manifiesto-comunista_202302/manifiesto-comunista.pdf" target="_blank" class="download-link" title="Descargar Manifiesto Comunista"><strong>Manifiesto comunista</strong> (1848)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                         <li>
                             <a href="https://archive.org/details/marx-el-capital-obra-completa" target="_blank" class="download-link" title="Descargar El Capital"><em>El capital</em> (1867)</a>
-                            <span class="download-hint">📥 Clic para descargar</span>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780140447200-M.jpg" onerror="this.onerror=null; this.src='https://dummyimage.com/100x150/34495e/ffffff.png&text=Manifiesto+Comunista';" alt="Portada del Manifiesto Comunista" onclick="openLightbox(this.src)">
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<!-- Script para el visor de imágenes amplias (Lightbox) -->
+<script>
+    function openLightbox(src) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = src;
+        lightbox.style.display = 'flex';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
